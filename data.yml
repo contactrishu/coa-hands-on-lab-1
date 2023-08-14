@@ -1,50 +1,40 @@
-defaultStorageMapping: STG
+defaultStorageMapping: WORK
 jobs: {}
 locations:
-  DW:
+  SAMPLE:
     mappingDefinitions:
+      "16":
+        database: ""
+        schema: ""
       "2":
-        database: RISHU_HOL_PROD
-        schema: DWH
-      "7":
-        database: RISHU_HOL_TEST
-        schema: DWH
-      "9":
-        database: RISHU_HOL_PROD
-        schema: DWH
-  SRC:
-    mappingDefinitions:
-      "2":
-        database: SNOWFLAKE_SAMPLE_DATA
-        schema: TPCH_SF1
+        database: ""
+        schema: ""
+      "5":
+        database: ""
+        schema: ""
       "7":
         database: SNOWFLAKE_SAMPLE_DATA
         schema: TPCH_SF1
       "9":
         database: SNOWFLAKE_SAMPLE_DATA
         schema: TPCH_SF1
-  STG:
+  WORK:
     mappingDefinitions:
+      "16":
+        database: ""
+        schema: ""
       "2":
-        database: RISHU_HOL_PROD
-        schema: STG
+        database: ""
+        schema: ""
+      "5":
+        database: ""
+        schema: ""
       "7":
         database: RISHU_HOL_TEST
-        schema: STG
+        schema: PUBLIC
       "9":
         database: RISHU_HOL_PROD
-        schema: STG
-  VW:
-    mappingDefinitions:
-      "2":
-        database: RISHU_HOL_PROD
-        schema: VW
-      "7":
-        database: RISHU_HOL_TEST
-        schema: VW
-      "9":
-        database: RISHU_HOL_PROD
-        schema: VW
+        schema: PUBLIC
 macros: {}
 packages: {}
 projects: {}
