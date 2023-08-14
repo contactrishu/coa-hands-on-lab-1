@@ -1,5 +1,12 @@
 defaultStorageMapping: WORK
-jobs: {}
+jobs:
+  Job-12:
+    excludeSelector: ""
+    id: 12
+    includeSelector: "+{  name: FCT_ORDERS_LINEITEM_DIM }"
+    name: FactRefresh
+    steps: []
+    subgraphs: []
 locations:
   SAMPLE:
     mappingDefinitions:
