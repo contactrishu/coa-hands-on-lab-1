@@ -33,7 +33,7 @@ steps:
           - columnReference:
               columnCounter: 4ad67eb8-aa33-475e-88a2-50dda9714f90
               stepCounter: afda5aa2-14a3-4253-871b-dd47b7c5f402
-            dataType: VARCHAR(25)
+            dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
@@ -47,7 +47,7 @@ steps:
           - columnReference:
               columnCounter: 030cb69b-72c2-43a0-8712-3ae6b3e8ab02
               stepCounter: afda5aa2-14a3-4253-871b-dd47b7c5f402
-            dataType: VARCHAR(152)
+            dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
