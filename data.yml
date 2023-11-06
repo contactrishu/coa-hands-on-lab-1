@@ -69,13 +69,13 @@ stepTypes:
       templates:
         create:
           templateString: |-
-            {%  if currentState is defined and desiredState is defined %}
+            {%  if currentState == defined and desiredState == defined %}
 
                 {{ stage('Alter Stream - skipped') }}
 
                 SELECT 1
 
-            {% elif currentState is undefined and desiredState is defined %}
+            {% elif currentState == undefined and desiredState == defined %}
 
                 {{ stage('Create Stream') }}
 
@@ -85,7 +85,7 @@ stepTypes:
                 SHOW_INITIAL_ROWS ={%- if desiredState.config.initialRows %} TRUE {% else %} FALSE {% endif %}
                 COMMENT = 'CDC Stream on {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}'
 
-            {% elif currentState is defined and desiredState is undefined %}
+            {% elif currentState == defined and desiredState == undefined %}
 
                 {{ stage('Drop Stream') }}
 
