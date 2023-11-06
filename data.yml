@@ -69,24 +69,13 @@ stepTypes:
       templates:
         create:
           templateString: |-
-            {%  set desired = '' %}
-            {%  set current = '' %}
-
-            {%  if desiredState is defined %}
-                    {% set desired = 'Defined' %}
-            {%  endif %}
-
-            {%  if currentState is defined %}
-                    {% set current = 'Defined' %}
-            {%  endif %}
-
-            {%  if current == 'Defined' and desired == 'Defined' %}
+            {%  if currentState is defined and desiredState is defined %}
 
                 {{ stage('Alter Stream - skipped') }}
 
                 SELECT 1
 
-            {% elif current != 'Defined' and desired == 'Defined' %}
+            {% elif currentState is undefined and desiredState is defined %}
 
                 {{ stage('Create Stream') }}
 
@@ -96,7 +85,7 @@ stepTypes:
                 SHOW_INITIAL_ROWS ={%- if desiredState.config.initialRows %} TRUE {% else %} FALSE {% endif %}
                 COMMENT = 'CDC Stream on {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}'
 
-            {% elif current == 'Defined' and desired != 'Defined' %}
+            {% elif currentState is defined and desiredState is undefined %}
 
                 {{ stage('Drop Stream') }}
 
