@@ -33,7 +33,7 @@ steps:
           - columnReference:
               columnCounter: 79030182-bdf1-4029-8b23-a09749e2df9b
               stepCounter: 4c6255c4-c3be-4348-8b52-3befb242fdb9
-            dataType: VARCHAR(25)
+            dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
@@ -47,7 +47,7 @@ steps:
           - columnReference:
               columnCounter: b41ea00e-4826-44be-b81d-9ddfcc9b3cf5
               stepCounter: 4c6255c4-c3be-4348-8b52-3befb242fdb9
-            dataType: VARCHAR(40)
+            dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
@@ -75,7 +75,7 @@ steps:
           - columnReference:
               columnCounter: 14226bea-ff75-4c97-a463-35ef41951519
               stepCounter: 4c6255c4-c3be-4348-8b52-3befb242fdb9
-            dataType: VARCHAR(15)
+            dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
@@ -103,7 +103,7 @@ steps:
           - columnReference:
               columnCounter: c1f14683-b564-4f87-a9ea-7fe810abf796
               stepCounter: 4c6255c4-c3be-4348-8b52-3befb242fdb9
-            dataType: VARCHAR(10)
+            dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
@@ -117,7 +117,7 @@ steps:
           - columnReference:
               columnCounter: d12f5d11-2937-4d08-9294-8c6a08171165
               stepCounter: 4c6255c4-c3be-4348-8b52-3befb242fdb9
-            dataType: VARCHAR(117)
+            dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
