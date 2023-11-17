@@ -1,9 +1,9 @@
 steps:
-  STR_NATION-6a5c1379-d0bb-4467-8719-d3ced1d34114:
+  STR_NATION-86f7a2c3-aeaf-43bd-a5f9-788969aaf00b:
     operation:
       config:
-        appendOnly: false
-        initialRows: false
+        appendOnly: true
+        initialRows: true
       database: ""
       deployEnabled: true
       description: Nation data as defined by TPC-H
@@ -14,8 +14,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 5f00451c-865b-47f9-952c-2aadfc205adc
-              stepCounter: 6a5c1379-d0bb-4467-8719-d3ced1d34114
+              columnCounter: e76ea65b-dab1-4555-9543-0579d98bfaff
+              stepCounter: 86f7a2c3-aeaf-43bd-a5f9-788969aaf00b
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -28,8 +28,8 @@ steps:
                     stepCounter: 16fdbbf2-6c93-46bc-a2dc-8083d3e65e1d
                 transform: ""
           - columnReference:
-              columnCounter: e8f3f999-cc9e-4fed-a89c-c84db8f89ae1
-              stepCounter: 6a5c1379-d0bb-4467-8719-d3ced1d34114
+              columnCounter: 7af5df05-d1fa-4d37-92fc-dd0dbf9d0180
+              stepCounter: 86f7a2c3-aeaf-43bd-a5f9-788969aaf00b
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -42,8 +42,8 @@ steps:
                     stepCounter: 16fdbbf2-6c93-46bc-a2dc-8083d3e65e1d
                 transform: ""
           - columnReference:
-              columnCounter: da309358-4d85-4cca-a79d-f5470db31aa3
-              stepCounter: 6a5c1379-d0bb-4467-8719-d3ced1d34114
+              columnCounter: 7dc6c731-8ef5-4fc7-87d6-c286d5e5c405
+              stepCounter: 86f7a2c3-aeaf-43bd-a5f9-788969aaf00b
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -56,8 +56,8 @@ steps:
                     stepCounter: 16fdbbf2-6c93-46bc-a2dc-8083d3e65e1d
                 transform: ""
           - columnReference:
-              columnCounter: 2aa2ef7a-a0b2-4b6b-87c0-0bb538bc6847
-              stepCounter: 6a5c1379-d0bb-4467-8719-d3ced1d34114
+              columnCounter: 9775fd0d-8a49-4db1-90da-6426e37abdfe
+              stepCounter: 86f7a2c3-aeaf-43bd-a5f9-788969aaf00b
             dataType: VARCHAR(152)
             description: ""
             hashColumns: []
@@ -74,8 +74,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 910ce3d3-768f-4740-a42f-405c3347c0f0
-              stepCounter: 6a5c1379-d0bb-4467-8719-d3ced1d34114
+              columnCounter: 6eee00b5-2573-4227-b1de-e9f660961a27
+              stepCounter: 86f7a2c3-aeaf-43bd-a5f9-788969aaf00b
             config: {}
             dataType: STRING
             defaultValue: ""
@@ -92,8 +92,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: b93facf8-4f2d-41dd-9e1a-70f7720f2b00
-              stepCounter: 6a5c1379-d0bb-4467-8719-d3ced1d34114
+              columnCounter: 2fb1dd5d-c493-43da-8130-7943ea82bdcd
+              stepCounter: 86f7a2c3-aeaf-43bd-a5f9-788969aaf00b
             config: {}
             dataType: STRING
             defaultValue: ""
@@ -110,8 +110,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4ab74e58-89e4-4e3e-868a-f9bf39a041d6
-              stepCounter: 6a5c1379-d0bb-4467-8719-d3ced1d34114
+              columnCounter: d8fd1319-505e-4cd2-99da-29d15c6a9c53
+              stepCounter: 86f7a2c3-aeaf-43bd-a5f9-788969aaf00b
             config: {}
             dataType: STRING
             defaultValue: ""
@@ -126,7 +126,8 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases: {}
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: WORK
@@ -140,4 +141,4 @@ steps:
       schema: ""
       sqlType: "18"
       type: sql
-    stepCounter: 6a5c1379-d0bb-4467-8719-d3ced1d34114
+    stepCounter: 86f7a2c3-aeaf-43bd-a5f9-788969aaf00b

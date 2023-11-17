@@ -69,23 +69,34 @@ stepTypes:
       templates:
         create:
           templateString: |-
-            {%  if currentState == defined and desiredState == defined %}
+            {%  set desired = '' %}
+            {%  set current = '' %}
+
+            {%  if desiredState is defined %}
+                    {% set desired = 'Defined' %}
+            {%  endif %}
+
+            {%  if currentState is defined %}
+                    {% set current = 'Defined' %}
+            {%  endif %}
+
+            {%  if current == 'Defined' and desired == 'Defined' %}
 
                 {{ stage('Alter Stream - skipped') }}
 
                 SELECT 1
 
-            {% elif currentState == undefined and desiredState == defined %}
+            {% elif current != 'Defined' and desired == 'Defined' %}
 
                 {{ stage('Create Stream') }}
 
-                CREATE OR REPLACE STREAM {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+                CREATE STREAM IF NOT EXISTS {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
                 ON TABLE {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
                 APPEND_ONLY = {%- if desiredState.config.appendOnly %} TRUE {% else %} FALSE {% endif %}
                 SHOW_INITIAL_ROWS ={%- if desiredState.config.initialRows %} TRUE {% else %} FALSE {% endif %}
                 COMMENT = 'CDC Stream on {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}'
 
-            {% elif currentState == defined and desiredState == undefined %}
+            {% elif current == 'Defined' and desired != 'Defined' %}
 
                 {{ stage('Drop Stream') }}
 
