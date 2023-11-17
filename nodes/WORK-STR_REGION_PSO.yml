@@ -1,0 +1,130 @@
+steps:
+  STR_REGION_PSO-e08ea671-af9b-4bfd-a945-498812b5d97a:
+    operation:
+      config:
+        appendOnly: false
+        initialRows: false
+      database: ""
+      deployEnabled: true
+      description: Region data as defined by TPC-H
+      isMultisource: false
+      locationName: WORK
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 4a0e6dc9-bbee-4baa-9f25-aa1578ad85e0
+              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: R_REGIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 023a55d3-d0ed-4961-899a-e985365026d6
+                    stepCounter: afda5aa2-14a3-4253-871b-dd47b7c5f402
+                transform: ""
+          - columnReference:
+              columnCounter: e3712486-f10a-416d-b6c3-1ece6436badc
+              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: R_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 4ad67eb8-aa33-475e-88a2-50dda9714f90
+                    stepCounter: afda5aa2-14a3-4253-871b-dd47b7c5f402
+                transform: ""
+          - columnReference:
+              columnCounter: fd1bbf28-c0d7-40a7-9091-fb36ccfdec60
+              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: R_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 030cb69b-72c2-43a0-8712-3ae6b3e8ab02
+                    stepCounter: afda5aa2-14a3-4253-871b-dd47b7c5f402
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: d3610e7b-ccb3-4d31-8a8b-1534c6e14338
+              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: Indicates the DML operation (INSERT, DELETE) recorded.
+            hashColumns: []
+            isStreamMetadataAction: true
+            name: METADATA$ACTION
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: METADATA$ACTION
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 73a17756-1be2-4f58-8223-2a7735077b71
+              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: Indicates whether the operation was part of an UPDATE statement.
+            hashColumns: []
+            isStreamMetadataIsUpdate: true
+            name: METADATA$ISUPDATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: METADATA$ISUPDATE
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 6d66dd40-dca7-4a30-b5ef-7602ecd4c6ab
+              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
+            hashColumns: []
+            isStreamMetadataRowId: true
+            name: METADATA$ROW_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: METADATA$ROW_ID
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: WORK
+                nodeName: STG_REGION
+            join:
+              joinCondition: FROM {{ ref('WORK', 'STG_REGION') }} "STG_REGION"
+            name: STR_REGION_PSO
+            noLinkRefs: []
+      name: STR_REGION_PSO
+      overrideSQL: false
+      schema: ""
+      sqlType: "137"
+      type: sql
+    stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a

@@ -22,6 +22,91 @@ macros: {}
 packages: {}
 projects: {}
 stepTypes:
+  StepType-137:
+    id: "137"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: Copy of CDC Stream
+        short: "STR"
+        tagColor: lavender
+        plural: CDC Streams
+        deployStrategy: advanced
+
+        config:
+        - groupName: Options
+          items:
+            - type: toggleButton
+              attributeName: appendOnly
+              displayName: Append Only
+              default: false
+            - type: toggleButton
+              attributeName: initialRows
+              displayName: Show Initial Rows
+              default: false
+
+        systemColumns:
+        - displayName: "METADATA$ACTION"
+          transform: "METADATA$ACTION"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataAction
+          description: Indicates the DML operation (INSERT, DELETE) recorded.
+        - displayName: "METADATA$ISUPDATE"
+          transform: "METADATA$ISUPDATE"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataIsUpdate
+          description: Indicates whether the operation was part of an UPDATE statement.
+        - displayName: "METADATA$ROW_ID"
+          transform: "METADATA$ROW_ID"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataRowId
+          description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
+      templates:
+        create:
+          templateString: |-
+            {%  set desired = '' %}
+            {%  set current = '' %}
+
+            {%  if desiredState is defined %}
+                    {% set desired = 'Defined' %}
+            {%  endif %}
+
+            {%  if currentState is defined %}
+                    {% set current = 'Defined' %}
+            {%  endif %}
+
+            {%  if current == 'Defined' and desired == 'Defined' %}
+
+                {{ stage('Alter Stream - skipped') }}
+
+                SELECT 1
+
+            {% elif current != 'Defined' and desired == 'Defined' %}
+
+                {{ stage('Create Stream') }}
+
+                CREATE OR REPLACE STREAM {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+                ON TABLE {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
+                APPEND_ONLY = {%- if desiredState.config.appendOnly %} TRUE {% else %} FALSE {% endif %}
+                SHOW_INITIAL_ROWS ={%- if desiredState.config.initialRows %} TRUE {% else %} FALSE {% endif %}
+                COMMENT = 'CDC Stream on {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}'
+
+            {% elif current == 'Defined' and desired != 'Defined' %}
+
+                {{ stage('Drop Stream') }}
+
+                DROP STREAM {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+
+            {% endif %}
+        run:
+          templateString: ""
+    name: Mitre10 CDC Stream -Presync off
+    version: 1
   StepType-18:
     id: "18"
     isDisabled: false
