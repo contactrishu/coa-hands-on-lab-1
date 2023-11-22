@@ -114,83 +114,188 @@ stepTypes:
       defaultStorageLocation: null
       error: null
       nodeMetadataSpec: |-
-        capitalized: CDC Stream
-        short: "STR"
-        tagColor: lavender
-        plural: CDC Streams
+        capitalized: Stream
+
+        short: STR
+
+        tagColor: "yellow"
+
+        plural: Streams
+
+         
+
         deployStrategy: advanced
 
+         
+
         config:
-        - groupName: Options
+
+         
+
+        - groupName: Stream
+
           items:
-            - type: toggleButton
-              attributeName: appendOnly
-              displayName: Append Only
-              default: false
-            - type: toggleButton
-              attributeName: initialRows
-              displayName: Show Initial Rows
-              default: false
+
+         
+
+          - displayName: Initial Rows
+
+            attributeName: initialRows
+
+            type: toggleButton
+
+            default: true
+
+            isRequired: false
+
+         
+
+          - displayName: Append Only
+
+            attributeName: appendOnly
+
+            type: toggleButton
+
+            default: false
+
+            isRequired: false
+
+         
+
+        - groupName: Hidden config
+
+          enableIf: "false"
+
+          items:
+
+          - displayName: Type
+
+            type: materializationSelector
+
+            default: view
+
+            options:
+
+            - view
+
+            isRequired: true
+
+         
 
         systemColumns:
+
         - displayName: "METADATA$ACTION"
+
           transform: "METADATA$ACTION"
+
           dataType: STRING
+
           placement: end
+
           attributeName: isStreamMetadataAction
+
           description: Indicates the DML operation (INSERT, DELETE) recorded.
+
         - displayName: "METADATA$ISUPDATE"
+
           transform: "METADATA$ISUPDATE"
+
           dataType: STRING
+
           placement: end
+
           attributeName: isStreamMetadataIsUpdate
+
           description: Indicates whether the operation was part of an UPDATE statement.
+
         - displayName: "METADATA$ROW_ID"
+
           transform: "METADATA$ROW_ID"
+
           dataType: STRING
+
           placement: end
+
           attributeName: isStreamMetadataRowId
+
           description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
       templates:
         create:
           templateString: |-
-            {%  set desired = '' %}
-            {%  set current = '' %}
+            {% if desiredState == undefined %}
 
-            {%  if desiredState is defined %}
-                    {% set desired = 'Defined' %}
-            {%  endif %}
+             
 
-            {%  if currentState is defined %}
-                    {% set current = 'Defined' %}
-            {%  endif %}
+                {{ stage('Drop Stream View') }}
 
-            {%  if current == 'Defined' and desired == 'Defined' %}
+                DROP VIEW IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
 
-                {{ stage('Alter Stream - skipped') }}
-
-                SELECT 1
-
-            {% elif current != 'Defined' and desired == 'Defined' %}
-
-                {{ stage('Create Stream') }}
-
-                CREATE STREAM IF NOT EXISTS {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
-                ON TABLE {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
-                APPEND_ONLY = {%- if desiredState.config.appendOnly %} TRUE {% else %} FALSE {% endif %}
-                SHOW_INITIAL_ROWS ={%- if desiredState.config.initialRows %} TRUE {% else %} FALSE {% endif %}
-                COMMENT = 'CDC Stream on {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}'
-
-            {% elif current == 'Defined' and desired != 'Defined' %}
+             
 
                 {{ stage('Drop Stream') }}
 
-                DROP STREAM {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+                DROP STREAM IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name + "_STR")  }}
+
+             
+
+            {% elif desiredState != undefined and currentState == undefined %}
+
+             
+
+                {{ stage('Create Stream') }}
+
+                CREATE OR REPLACE STREAM {{ ref_no_link(desiredState.node.location.name, desiredState.node.name + "_STR")  }}
+
+                ON TABLE {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
+
+                APPEND_ONLY = {% if desiredState.config.appendOnly is true %} TRUE {%- else -%} FALSE {% endif %}
+
+                SHOW_INITIAL_ROWS = {% if desiredState.config.initialRows is true %} TRUE {%- else -%} FALSE {% endif %}
+
+                COMMENT = 'CDC Stream on {{ this }}'
+
+             
+
+                {{ stage('Create Stream View') }}
+
+                CREATE OR REPLACE VIEW {{ ref_no_link(desiredState.node.location.name, desiredState.node.name)  }}
+
+                (
+
+                    {% for col in desiredState.columns %}
+
+                        "{{ col.name }}"  {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+
+                        {%- if not loop.last -%}, {% endif %}
+
+                    {% endfor %}
+
+                )
+
+                {%- if desiredState.node.description | length > 0 %} COMMENT = '{{ desiredState.node.description }}'{% endif %}
+
+                AS
+
+                SELECT
+
+                {% for col in desiredState.sources[0].columns %}
+
+                    "{{ col.name }}"::{{col.dataType}} as "{{ col.name }}"
+
+                    {%- if not loop.last -%}, {% endif %}
+
+                {% endfor %}
+
+                FROM {{ ref_no_link(desiredState.node.location.name, desiredState.node.name + "_STR")  }}
+
+            {% else %}
+                {{ stage('Do nothing') }}
+                SELECT 1
 
             {% endif %}
         run:
           templateString: ""
-    name: Mitre10 CDC Stream
+    name: CDC View
     version: 1
   StepType-Dimension:
     id: Dimension
