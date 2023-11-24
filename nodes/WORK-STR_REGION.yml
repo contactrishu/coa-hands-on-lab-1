@@ -1,8 +1,8 @@
 steps:
-  STR_REGION_PSO-e08ea671-af9b-4bfd-a945-498812b5d97a:
+  STR_REGION-a184e56c-ea39-4ac9-b3a5-fd21bbf443f7:
     operation:
       config:
-        appendOnly: false
+        appendOnly: true
         initialRows: false
       database: ""
       deployEnabled: true
@@ -14,8 +14,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 4a0e6dc9-bbee-4baa-9f25-aa1578ad85e0
-              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+              columnCounter: a198ad45-5184-4ff5-9ef3-1758bced2d5d
+              stepCounter: a184e56c-ea39-4ac9-b3a5-fd21bbf443f7
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -28,8 +28,8 @@ steps:
                     stepCounter: afda5aa2-14a3-4253-871b-dd47b7c5f402
                 transform: ""
           - columnReference:
-              columnCounter: e3712486-f10a-416d-b6c3-1ece6436badc
-              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+              columnCounter: 90eb2628-3b81-4c58-be45-8ae49faf43e4
+              stepCounter: a184e56c-ea39-4ac9-b3a5-fd21bbf443f7
             dataType: STRING
             description: ""
             hashColumns: []
@@ -42,8 +42,8 @@ steps:
                     stepCounter: afda5aa2-14a3-4253-871b-dd47b7c5f402
                 transform: ""
           - columnReference:
-              columnCounter: fd1bbf28-c0d7-40a7-9091-fb36ccfdec60
-              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+              columnCounter: edc4ec9f-7fdb-4fc6-b64c-0c7f44a7def2
+              stepCounter: a184e56c-ea39-4ac9-b3a5-fd21bbf443f7
             dataType: STRING
             description: ""
             hashColumns: []
@@ -60,8 +60,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: d3610e7b-ccb3-4d31-8a8b-1534c6e14338
-              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+              columnCounter: 78c090ff-45e0-4545-944c-01b830c84734
+              stepCounter: a184e56c-ea39-4ac9-b3a5-fd21bbf443f7
             config: {}
             dataType: STRING
             defaultValue: ""
@@ -78,8 +78,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 73a17756-1be2-4f58-8223-2a7735077b71
-              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+              columnCounter: 6809e7d7-69ff-483f-a51b-773bd19b4b4b
+              stepCounter: a184e56c-ea39-4ac9-b3a5-fd21bbf443f7
             config: {}
             dataType: STRING
             defaultValue: ""
@@ -96,8 +96,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 6d66dd40-dca7-4a30-b5ef-7602ecd4c6ab
-              stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+              columnCounter: eec1a705-1dc6-437f-970f-eb8b02d8fcce
+              stepCounter: a184e56c-ea39-4ac9-b3a5-fd21bbf443f7
             config: {}
             dataType: STRING
             defaultValue: ""
@@ -120,11 +120,11 @@ steps:
                 nodeName: STG_REGION
             join:
               joinCondition: FROM {{ ref('WORK', 'STG_REGION') }} "STG_REGION"
-            name: STR_REGION_PSO
+            name: STR_REGION
             noLinkRefs: []
-      name: STR_REGION_PSO
+      name: STR_REGION
       overrideSQL: false
       schema: ""
       sqlType: "137"
       type: sql
-    stepCounter: e08ea671-af9b-4bfd-a945-498812b5d97a
+    stepCounter: a184e56c-ea39-4ac9-b3a5-fd21bbf443f7
