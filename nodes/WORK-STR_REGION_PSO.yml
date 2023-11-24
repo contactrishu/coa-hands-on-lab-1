@@ -1,5 +1,5 @@
 steps:
-  STR_REGION-a184e56c-ea39-4ac9-b3a5-fd21bbf443f7:
+  STR_REGION_PSO-a184e56c-ea39-4ac9-b3a5-fd21bbf443f7:
     operation:
       config:
         appendOnly: true
@@ -120,9 +120,9 @@ steps:
                 nodeName: STG_REGION
             join:
               joinCondition: FROM {{ ref('WORK', 'STG_REGION') }} "STG_REGION"
-            name: STR_REGION
+            name: STR_REGION_PSO
             noLinkRefs: []
-      name: STR_REGION
+      name: STR_REGION_PSO
       overrideSQL: false
       schema: ""
       sqlType: "137"
