@@ -1,6 +1,13 @@
-defaultStorageMapping: SRC
+defaultStorageMapping: WORK
 installedPackages: {}
-jobs: {}
+jobs:
+  Job-65:
+    excludeSelector: ""
+    id: 65
+    includeSelector: "+{ location: WORK name: FCT_ORDERS_LINEITEM_DIM }"
+    name: RefreshFact
+    steps: []
+    subgraphs: []
 locations:
   SRC:
     mappingDefinitions:
@@ -13,11 +20,11 @@ locations:
   WORK:
     mappingDefinitions:
       "7":
-        database: PC_COALESCE_DB
-        schema: TEST
+        database: RISHU_TEST
+        schema: PUBLIC
       "9":
-        database: PC_COALESCE_DB
-        schema: PROD
+        database: RISHU_PROD
+        schema: PUBLIC
 macros: {}
 packages: {}
 projects: {}
