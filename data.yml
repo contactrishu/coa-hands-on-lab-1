@@ -4,7 +4,7 @@ jobs:
   Job-65:
     excludeSelector: ""
     id: 65
-    includeSelector: "+{ location: WORK name: FCT_ORDERS_LINEITEM_DIM }"
+    includeSelector: ""
     name: RefreshFact
     steps: []
     subgraphs: []
